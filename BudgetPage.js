@@ -45,7 +45,7 @@ function createBudgetPage() {
           if (budget[yearMonth].categories[category] && budget[yearMonth].categories[category][subcategory]) {  // Check if category and subcategory exist
               budget[yearMonth].categories[category][subcategory].actual += amount;
           } else {
-              console.warn(`Unknown category or subcategory: ${category} / ${subcategory}`);
+              console.warn(`Skipped "${transaction.Description}" from budget. Add a matching keyword to a subcateogry in Categorization.gs`);
           }
   
           // Track cash metrics
