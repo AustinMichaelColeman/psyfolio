@@ -1,5 +1,5 @@
 // customize these categories in your Google Apps Scripts project
-const CATEGORIES = [
+const DEFAULT_CATEGORIES = [
   {
     name: "Income",
     subcategories: [
@@ -177,8 +177,60 @@ const CATEGORIES = [
   },
 ];
 
+function getOrCreateCategoriesSheet() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName("Categories");
+
+  if (!sheet) {
+    // Sheet doesn't exist, create and populate with default categories
+    sheet = ss.insertSheet("Categories");
+    const values = DEFAULT_CATEGORIES.flatMap((category) =>
+      category.subcategories.map((sub) => [
+        category.name,
+        sub.name,
+        sub.defaultValue,
+        sub.keywords.join(", "),
+      ])
+    );
+    const categoryRows = [
+      ["Category", "Subcategory", "DefaultValue", "Keywords"],
+      ...values,
+    ];
+    sheet
+      .getRange(1, 1, categoryRows.length, categoryRows[0].length)
+      .setValues(categoryRows);
+  }
+
+  return sheet;
+}
+
+function readCategoriesFromSheet(sheet) {
+  const values = sheet.getDataRange().getValues();
+  const categories = {};
+
+  values.slice(1).forEach((row) => {
+    const [categoryName, subcategoryName, defaultValue, keywords] = row;
+    if (!categories[categoryName]) {
+      categories[categoryName] = { name: categoryName, subcategories: [] };
+    }
+    categories[categoryName].subcategories.push({
+      name: subcategoryName,
+      defaultValue: defaultValue,
+      keywords: keywords.split(",").map((k) => k.trim()),
+    });
+  });
+
+  return Object.values(categories);
+}
+
+let cachedCategories = null;
 function categorize(description) {
-  for (const categoryObject of CATEGORIES) {
+  if (!cachedCategories) {
+    const sheet = getOrCreateCategoriesSheet();
+    cachedCategories = readCategoriesFromSheet(sheet);
+  }
+
+  for (const categoryObject of cachedCategories) {
     const category = categoryObject.name;
     for (const subcategoryObject of categoryObject.subcategories) {
       const subcategory = subcategoryObject.name;

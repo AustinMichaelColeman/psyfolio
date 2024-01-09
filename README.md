@@ -31,5 +31,6 @@ Also, have you ever looked at your bank statement what all those Amazon purchase
 8. In the dropdown at the top, select Psyfolio and click Run
 9. Accept the permissions.
 10. Change Categorization and DescriptionReplacement based on your criteria. Re-run the script as needed. Note - it will clear and recreate the sheet with every run.
+11. The Categories page will not be cleared. Instead if it exists, it will be used to create the budget. Delete the Categories page and re-run Psyfolio and it will create the categories page for you with some default options.
 
-You may notice some logs print about categories. Go to the Transactions page in Google Sheets and look at the uncategorized transaction descriptions. Add some keywords or categories to Categorization.gs. defaultValue is the default budget value of that subcategory. Check out the budget page that is generated too. It generates a budget for each month of data. All months share the same budget, defined in categorization.gs.
+You may notice some logs print about categories. Go to the Transactions page in Google Sheets and look at the uncategorized transaction descriptions. Add some keywords or categories to the Categorization sheet. defaultValue is the default budget value of that subcategory. Check out the budget page that is generated too. It generates a budget for each month of data. All months share the same budget, defined in the Categorization page.

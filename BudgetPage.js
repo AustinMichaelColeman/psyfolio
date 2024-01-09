@@ -104,7 +104,7 @@ function createBudgetPage() {
   
   function initializeBudgetCategories() {
       let categoryMap = {};
-      for (const categoryObject of CATEGORIES) {
+      for (const categoryObject of cachedCategories) {
           const categoryName = categoryObject.name;
           categoryMap[categoryName] = {};
           for (const subcategoryObject of categoryObject.subcategories) {
