@@ -11,14 +11,6 @@ Automated financial analysis and budgeting project for Google Sheets
 - Automatically generated monthly budget pages
 - Quickly gain insights into your financial data for free
 
-## Why Psyfolio?
-
-Why pay for a financial analysis and budgeting service when you could do it yourself for free? Psyfolio is an automated financial analysis and budgeting project for Google Sheets.
-
-Most banks have a way of providing your transaction history data in the form of a csv. This project converts the data in the csvs into spending insights in a Google Sheets page. And with the help of another extension I made, you can quickly automatically update the data in your budget and see exactly how much of your shopping or fast food budget you have left for example.
-
-Also, have you ever looked at your bank statement and wondered what all those Amazon purchases were? This also will help with that. Use DescriptionReplacement.js to replace the keys with your own description of what you bought. They can also be used in categorization to categorize your Amazon spending.
-
 ## How to use
 
 1. Create a new Google Sheets document and name it something such as "Automated Budget"
