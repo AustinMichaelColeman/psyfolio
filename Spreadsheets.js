@@ -6,10 +6,6 @@ const getOrCreateSheetBudget = () => {
   return getOrCreateSheet('Budget');
 };
 
-const getOrCreateSheetDebt = () => {
-  return getOrCreateSheet('Debt');
-};
-
 const getOrCreateSheet = (name) => {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName(name);
