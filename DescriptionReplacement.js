@@ -14,9 +14,9 @@ function descriptionReplacement(description) {
       'someAmazonCode123': 'Laundry detergent',
     };
   
-    for (const [key, value] of Object.entries(amazonDescriptions)) {
-      if (description.includes(key)) {
-        return `Amazon purchase - ${key} - ${value}`;
+    for (const [amazonCode, codeDescription] of Object.entries(amazonDescriptions)) {
+      if (description.includes(amazonCode)) {
+        return `Amazon purchase - ${amazonCode} - ${codeDescription}`;
       }
     }
     return description;
